@@ -1,5 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="utf-8"><title>Oliver Frias</title></head>
-<body><h1>Oliver Frias</h1><p>Site under construction.</p></body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oliver Frias — Network &amp; Infrastructure Projects</title>
+<meta name="description" content="Home lab and infrastructure projects — OPNsense firewall, Active Directory, Linux virtualization. Working toward NOC and data center operations.">
+<style>
+  :root {
+    --ink: #16181d;
+    --muted: #5f6570;
+    --line: #e3e5e9;
+    --accent: #1F5C8B;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0 24px; background: #fff; color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 17px; line-height: 1.65;
+  }
+  .wrap { max-width: 660px; margin: 0 auto; padding: 72px 0 96px; }
+
+  h1 { font-size: 2rem; margin: 0 0 10px; letter-spacing: -0.02em; }
+  .intro { font-size: 1.12rem; margin: 0 0 18px; }
+  .intro strong { font-weight: 600; }
+  .contact { font-size: 0.95rem; color: var(--muted); margin: 0 0 8px; }
+  .contact a { color: var(--accent); }
+
+  header { margin-bottom: 56px; }
+
+  h2 {
+    font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); margin: 0 0 28px; font-weight: 700;
+  }
+
+  .project { margin-bottom: 46px; padding-bottom: 46px; border-bottom: 1px solid var(--line); }
+  .project:last-of-type { border-bottom: none; }
+
+  .project h3 { font-size: 1.22rem; margin: 0 0 10px; }
+  .project h3 a { color: var(--accent); text-decoration: none; }
+  .project h3 a:hover { text-decoration: underline; }
+
+  .project p { margin: 0 0 14px; }
+
+  .built {
+    font-size: 0.9rem; color: var(--muted); margin: 0;
+    padding-top: 10px; border-top: 1px dotted var(--line);
+  }
+
+  .flag {
+    display: inline-block; font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    background: #fdf3e3; color: #8a5a00; padding: 3px 9px;
+    border-radius: 3px; vertical-align: 3px; margin-left: 6px;
+  }
+
+  a { color: var(--accent); }
+
+  footer {
+    margin-top: 20px; padding-top: 26px; border-top: 1px solid var(--line);
+    font-size: 0.93rem; color: var(--muted);
+  }
+  footer p { margin: 0 0 10px; }
+
+  @media (max-width: 520px) {
+    body { font-size: 16px; padding: 0 18px; }
+    .wrap { padding: 44px 0 64px; }
+    h1 { font-size: 1.6rem; }
+    .intro { font-size: 1.05rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Oliver Frias</h1>
+  <p class="intro">
+    I build and document infrastructure at home — a firewall I specified and
+    assembled myself, a Windows domain, and the network my household actually
+    depends on. I am working toward a <strong>NOC or data center technician</strong>
+    role.
+  </p>
+  <p class="contact">
+    Lancaster County, PA &nbsp;·&nbsp;
+    <a href="mailto:mr.oliverstiven@outlook.com">mr.oliverstiven@outlook.com</a>
+    &nbsp;·&nbsp;
+    <a href="https://github.com/NETNNOOB">github.com/NETNNOOB</a>
+  </p>
+</header>
+
+<h2>Projects</h2>
+
+<div class="project">
+  <h3><a href="https://github.com/NETNNOOB/home-network-docs">Home Network</a></h3>
+  <p>
+    I replaced the ISP router with a firewall I built myself. That meant
+    specifying hardware against real constraints — Intel NICs only, AES-NI
+    required, two or more ports — installing OPNsense on it, and cutting the
+    house over to it without a long outage.
+  </p>
+  <p>
+    It now runs recursive DNS with DNSSEC and network-wide filtering, with a
+    NAT rule forcing every client to use it so no device can quietly opt out.
+    Two access points, 21 clients, and an isolated virtual network for the lab
+    below.
+  </p>
+  <p>
+    The repository has the topology diagram, the design decisions with their
+    tradeoffs, and a write-up of an outage I caused during the cutover and
+    then diagnosed — a VPN kill switch that did exactly what it was built to
+    do, at the worst possible moment.
+  </p>
+  <p class="built">OPNsense · Unbound DNS · DHCP · firewall and NAT rules · hardware selection</p>
+</div>
+
+<div class="project">
+  <h3><a href="https://github.com/NETNNOOB/ad-lab">Windows Server Active Directory Lab</a></h3>
+  <p>
+    A working Windows domain built from nothing on KVM: a domain controller
+    providing directory, DNS and DHCP services, and a client machine joined to
+    it across an isolated virtual network I defined in XML because the GUI
+    would not expose the setting I needed.
+  </p>
+  <p>
+    The part worth reading is the troubleshooting log. Three problems, each
+    written as symptom, hypotheses, evidence, root cause, and fix — including
+    one where my first hypothesis was reasonable and wrong, which I left in
+    rather than tidying away.
+  </p>
+  <p class="built">Windows Server · Active Directory · DNS · DHCP · KVM/libvirt · PowerShell</p>
+</div>
+
+<div class="project">
+  <h3>Hybrid NetDevOps Lab <span class="flag">In progress</span></h3>
+  <p>
+    A longer six-phase project running alongside my degree, covering Linux
+    systems, network automation, and infrastructure practices. Built in the
+    open, one phase at a time.
+  </p>
+  <p class="built">Linux · automation · version control</p>
+</div>
+
+<footer>
+  <p>
+    I am finishing a BS in Cloud and Network Engineering at WGU on the Cisco
+    track. I hold ITIL 4 Foundation and LPI Linux Essentials; CompTIA A+ is
+    scheduled for October 2026 and CCNA follows.
+  </p>
+  <p>
+    I currently drive commercially, hauling petroleum on a Class A CDL with
+    hazmat and tanker endorsements — work where procedure matters and being
+    dependable on an awkward schedule is the job.
+  </p>
+  <p>
+    Based in Lancaster County, PA. Open to shift work and to roles across the
+    surrounding region. Full resume on request.
+  </p>
+</footer>
+
+</div>
+</body>
 </html>
